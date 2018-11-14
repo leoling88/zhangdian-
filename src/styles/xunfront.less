@@ -1,0 +1,320 @@
+/*
+ *   DW 为设备屏幕宽度
+ *   用法：将所有元素的尺寸单位都统一用rem,
+ *   换算方法：实际尺寸除以100即可，比如一张图片在设计图上的实际尺寸为：100px*100px ,那么换算为rem：1rem*1rem
+ *   基于设计图主体宽度为750px的自适应市面所有主流设备
+*/
+/*屏幕宽度为：DW = 320px, 如iphone5*/
+html{width:100%;}
+
+
+body{ background: #f2f2f8; color: #333;font-size: .30rem;font-family: "Hiragino Sans GB", STHeiti, "Microsoft YaHei", '微软雅黑', simsun, sans-serif, Arial}
+i,em{ font-style: normal;}
+img{ width: 100%;height:auto;}
+
+.xfv-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.szzd-index-link{
+    background: #fff;
+
+}
+
+.szzd-index-link .vux-flexbox{
+  margin: 0.5rem 0.3rem;
+  width: auto;
+}
+
+.szzd-index-link .vux-flexbox-item{
+  background-color: #fafafa;
+  text-align: center;
+}
+
+.szzd-index-link img{
+  width: 70%;
+  height: 70%;
+
+}
+
+.szzd-index-link span{
+  display: block;
+  margin: -0.2rem 0 0;
+  padding: 0 0 0.2rem;
+}
+
+.szzd-index-bottom{
+  width: 100%;
+  padding:.2rem 0;
+  line-height: .5rem;
+  overflow: hidden;
+  text-align: center;
+  background: #FAFAFA;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  color: #999;
+  a{color: #999;}
+}
+
+.szzd-index-bottom p{
+}
+
+.marginLine{
+  margin: 0 0 0.2rem;
+}
+
+.xfv-from{
+  background-color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.selector_box .vux-cell-option{
+  color: #CFCCD6;float:right;
+}
+
+.check_detail_btn{display:block;width: 6.80rem;height:.96rem;line-height:.96rem;margin:.2rem auto 0 auto; border-radius: .1rem;text-align: center;color:#fff;font-size: .34rem;background: #008cec;border:none;
+  outline:none;}
+
+.card_cont{
+  position: relative;
+}
+
+.card_cont h2{
+  position: absolute;
+  left: .6rem;
+  top: .3rem;
+  color: #fff;
+  font-size: .36rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+.card_text{
+  text-align: center;
+  margin: .38rem 0 .6rem;
+  line-height:.68rem;
+}
+
+.card_text h3{
+  font-size: .36rem;
+  color: #000;
+}
+
+.card_text p{
+  color: #999;
+}
+
+.card_lists{
+  background-color: #fff;
+}
+
+.card_lists .weui-cell{
+  padding: .20rem .24rem;
+}
+
+.card_lists .weui-cell .vux-label,.card_lists .weui-cell .weui-cell__ft{
+  color: #000;
+}
+
+.member-switch .weui-cells:after{
+  border: 0 none;
+}
+
+
+.szzd-dialog{
+    .popup_title{ padding:0;margin: 0; position: relative;text-align: left;}
+    .popupBox{ background: #fff;}
+    .hideDialog{ width: 0.8rem; height: 0.8rem; right:5px; top:3px; fill: #cccccc;position: absolute;}
+    .popup_button{
+      padding: 0;
+      margin: 0.28rem;
+
+    }
+    .title_type{
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0.28rem;
+      text-align: center;
+      color: #000;
+      font-size: 0.35rem;
+    }
+    .szzdbtn{
+      position: relative;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0.2rem;
+      padding-right: 0.2rem;
+      box-sizing: border-box;
+      font-size: 0.35rem;
+      text-align: center;
+      text-decoration: none;
+      color: #FFFFFF;
+      line-height: 2.33333333;
+      border-radius: 5px;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      overflow: hidden;
+    }
+    .szzdbtn1{
+      background-color: #00bc96;
+    }
+    .szzdbtn2{
+      background-color: #18aaff;
+    }
+    .disabled{
+      background-color: #ccc;
+    }
+    .title_close{
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 0.58rem;
+    }
+}
+
+.member-wraper{
+
+  .mv-children{
+    border-top: 1px solid #ddd;
+    .mvc-edit{
+      width: 0.36rem;
+      vertical-align: middle;
+    }
+    .mvc-value{
+      padding-right: .1rem;
+      color: #000;
+    }
+  }
+  .mw-plus{
+    padding: 0.3rem 0;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    .vux-x-icon{
+      fill: #008cec;
+    }
+  }
+
+}
+
+.weui-cell.disabled,.disabledDatetime{
+  color: #b2b2b2!important;
+}
+.vux-x-input.disabled .weui-input{
+  text-fill-color: #b2b2b2;
+  -webkit-text-fill-color: #b2b2b2;
+}
+/**重置weui样式**/
+
+.weui-dialog{padding: 0; border-radius: 2px !important;}
+.weui-dialog__hd{padding:.2rem 0 0 0!important; }
+.weui-dialog__bd{width: 90%;overflow:hidden;margin:0 auto;padding:0.3rem 0 .5rem 0!important;min-height:0!important;}
+
+.weui-dialog__btn_primary{ color: #52a7ff!important;}
+.weui-toast{ z-index: 500000;background:rgba(17, 17, 17, 0.82)}
+.weui-toast.vux-toast-middle{ max-width: 90%;padding:0 .1rem}
+.weui-toast_text .weui-toast__content{font-size: .32rem;}
+.weui-tabbar{ background-color: #fff!important;}
+#app .weui-toast{min-height: inherit}
+:-moz-placeholder {  color: #ccc; opacity:1;  }
+::-moz-placeholder {  color: #ccc;opacity:1;  }
+input:-ms-input-placeholder{  color: #ccc;opacity:1;  }
+input::-webkit-input-placeholder{  color: #ccc;opacity:1;  }
+.weui-tabbar:before{ border-top:1px solid #e7e7e7;}
+/**重置weui样式**/
+
+/**公共底部**/
+.weui-tabbar{height:.96rem;padding:.1rem 0;}
+[class^="weui-icon-"]:before, [class*=" weui-icon-"]:before{ margin: 0!important;}
+.weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon > i, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label{ color: #3385ff!important;}
+.weui-tabbar__icon{width: .48rem;height: .48rem;}
+.weui-tabbar__label{font-size: .25rem;}
+.weui-tabbar__icon > sup{top:0;left:110%;}
+/**公共底部**/
+
+/**上下拉滚动加载样式**/
+.xs-plugin-pullup-container{ font-size: 0.25rem!important;}
+.rotate {  display: inline-block;  transform: rotate(-180deg);  }
+.pulldown-arrow,.pullup-arrow {  color: #666;  font-size: 0.45rem; }
+.pullupnomore{ color: #999; text-align: center; font-size: 0.28rem; line-height: 40px; display: none;}
+/**上下拉滚动加载样式**/
+
+/**导航条*标题样式修改**/
+
+.weui-cells {  margin-top: 0px!important;padding: 0px 0 !important;  }
+
+/*轮播焦点图焦点颜色*/
+.vux-slider.home_swiper > .vux-indicator > a > .vux-icon-dot.active, .vux-slider .vux-indicator-right > a > .vux-icon-dot.active{background-color: #1f67d0;}
+
+/*popup滚动条隐藏*/
+.vux-popup-dialog{overflow-y:scroll;}
+.vux-popup-dialog::-webkit-scrollbar{display: none;}
+
+.custom_cell .weui-cell__ft,.address_cont .vux-cell-value{color:#333;}
+
+/*
+* 重写告Icon
+*/
+.weui_icon_warn{font-size: 21px;}
+
+
+
+.popupBox{
+  .weui-cell{
+    padding: 19px 15px;
+  }
+  .textCenter {
+    padding: 0.29rem 0;
+    p{
+      padding: 0 0 0.19rem 0;
+    }
+  }
+}
+
+
+.address_detail_cont{border-top: 1px solid #eee;position: relative;}
+.address_detail_cont.inputRead input{width:100%;}
+.address_detail_cont textarea{width:4.33rem;float:right;}
+.address_detail_cont textarea{text-align: right;font-family: "Hiragino Sans GB", STHeiti, "Microsoft YaHei", '\5FAE\8F6F\96C5\9ED1', simsun, sans-serif, Arial;line-height: .5rem;padding: .25rem 0;color: #333 !important;}
+.address_detail_cont textarea::placeholder{color: #CFCCD6;}
+.vux-popup-picker-placeholder{color:#D2CCDE !important;}
+
+.address_detail{
+  .vux-label{width:2.2rem;}
+  .weui-cell__ft{line-height:.5rem;color:#333 !important;padding: .2rem 0;}
+}
+
+
+.address_cont{
+  position: relative;overflow: hidden;
+  .subAddress{display:block;width:4.4rem;position: absolute;right:22px;top:0;color:#333;line-height: .96rem;text-align:right;font-size: .32rem;z-index: 1;}
+}
+.address_list .vux-popup-picker-value.vux-cell-value{opacity: 0;position: absolute;right:0;top:-.48rem;z-index: 2;}
+
+.vux-flexbox{
+  background: #fff;
+  .vux-flexbox-item:first-of-type{
+    flex: 2; position: relative;
+    /*&:before{content:'';display: block;width:100%;height: 1px;border-top:1px solid rgb(232,232,232);position: absolute;left:50%;top:102px;}
+    &:after{content:'';display: block;width:100%;height: 1px;border-top:1px solid rgb(232,232,232);position: absolute;left:50%;top:135px;}*/
+  }
+  .vux-flexbox-item:nth-of-type(2){flex: 2;}
+  .vux-flexbox-item:nth-of-type(3){flex: 4;}
+
+  .vux-flexbox-item.check-in{flex: 2;}
+}
+.scroller-item{font-size: .25rem !important;}
+
+
+.weui-switch:checked:before, .weui-switch-cp__input:checked ~ .weui-switch-cp__box:before{transform:scale(0);-webkit-transform:scale(0);}
+
+.vux-popup-header{
+  display: box;display: -moz-box;display: -webkit-box;
+  div{box-flex: 1;-moz-box-flex: 1; -webkit-box-flex: 1;}
+  .vux-popup-header-right{text-align: right;}
+}
+
+
