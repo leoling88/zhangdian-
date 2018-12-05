@@ -2,8 +2,8 @@
   <div class="QA">
 	<h1 class="h1">{{article.title}}</h1>
 	<div class="con" v-html="article.content"></div>
-    <div @click="goNext" v-if="nodeEnv === 'development'">下一步</div>
-
+<!--     <div @click="goNext" v-if="nodeEnv === 'development'">下一步</div>
+ -->
 
   </div>
 </template>
@@ -20,8 +20,8 @@ export default {
     name: 'QA',
     data () {
     	return {
-            openid: this.$route.params.openid,
-            comGUID: this.$route.query.comGUID,
+            openId: this.$route.params.openid,
+            comGUID: this.$route.params.comGUID,
     		article:{},
     		nodeEnv: 'development',
 
@@ -35,7 +35,7 @@ export default {
 		setOptionMenu () {
 			if (window.AlipayJSBridge) {
 			  AlipayJSBridge.call('setOptionMenu', {
-			    title : '下一步',  // 与icon、icontype三选一
+			    title : ' ',  // 与icon、icontype三选一
 			    redDot : '-1', // -1表示不显示，0表示显示红点，1-99表示在红点上显示的数字
 			    color : '#008cec', // 必须以＃开始ARGB颜色值
 			  });
@@ -48,31 +48,34 @@ export default {
 		},
         requireData () {
             this.$store.commit('UPDATE_LOADING', true)
-
-            api.helpDetai(this.comguid).then((res) => {
+            api.hotArticle(this.comGUID).then((res) => {
               if(res.data.success){
                 this.article = res.data.obj[0]
+                // this.articleImg = res.data.fileIds
                 this.$store.commit('UPDATE_LOADING', false);
-
-
               }
             }).catch(() => {
               this.$store.commit('UPDATE_LOADING', false);
             })
-        }
-
- 
-
+        },
+        setTitle (data) {
+          if (window.AlipayJSBridge) AlipayJSBridge.call('setTitle', {title: '问题详情'})
+        },        
     },
     mounted () {
         this.requireData()
-    },    
+        this.setTitle()
+        this.setOptionMenu()
+    },
+    destroyed () {
+      this.removeOptionMenu();
+    }    
 }
 </script> 
-<style  >
-.QA{width:100%;overflow:hidden;}
-.QA .h1{padding:.2rem .3rem;font-size:.32rem;color:#000;background:#fff;}
-.QA .con{border-top:.01rem solid #ccc;border-bottom:.01rem solid #ccc;margin-bottom:1rem;padding:.2rem .3rem ;font-size:.28rem;color:#666;background:#f1f1f1;}
+<style scoped >
+.QA{width:100%;min-height:736px;overflow:hidden;border-top:.02rem solid #ccc;background:#fff;}
+.QA .h1{padding:.2rem .3rem;font-size:.28rem;color:#333;background:#fff;font-weight: bold;}
+.QA .con{border-top:.01rem solid #ccc;margin-bottom:1rem;padding:.2rem .3rem ;font-size:.28rem;color:#666;}
 .QA .con p{padding:.1rem 0;}
 .QA .con img{width:auto;max-width:90%;margin:.1rem auto;}
 </style>

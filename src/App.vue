@@ -17,6 +17,12 @@ export default {
       'loadingShow'
     ])
   },
+  props: {
+
+    /*下拉选择1*/
+    selectDatas: Object,
+
+  },  
   methods: {
     setRem (designWidth = 750) {  // 自适应所有主流设备
       var winWidth = document.body.clientWidth || document.documentElement.clientWidth;
@@ -47,7 +53,7 @@ export default {
         }
       });
 
-      api.queryForPolice().then(res => {
+      api.queryForPolice(1).then(res => {
         if(res.data.success) {
           const data = res.data.obj.rows;
           this.$Utils.setLocalStorage('pcsList', this.filerData(data,1));
@@ -66,6 +72,7 @@ export default {
           })
         });
       } else {
+        console.log()
 
         srcData.forEach((item,i) => {
           toData.push({

@@ -129,6 +129,7 @@
     computed: {
     },
     mounted () {
+      
       this.getNativeFlag()
       this.setTitle();
       this.setOptionMenu();//右上角

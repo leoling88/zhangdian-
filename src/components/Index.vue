@@ -2,7 +2,10 @@
   <div class="xfv-container" style="background-color: #fff;height: 100%;position: absolute;bottom:0;left:0;">
       <div class="xfv-index-top">
 
+
         <div ref="szzdIndexTop">
+
+          <a class="link-jzdqy" href="#/regulations1"><i ><img src="static/images/icon_001.png" alt=""></i><span>居住证权益</span><img src="static/images/bg_001.png" alt=""></a>
           <img src="static/images/szzd_bg.png">
         </div>
         <div class="szzd-index-link" ref="linkBar">
@@ -17,10 +20,15 @@
         </div>
         <div class="szzd-index-bottom">
           <p>中国共产党张店区委员会政法委员会</p>
-          <p>服务电话：<a href="tel:0533-2869862">0533-2869862</a></p>
-          <p> <span class="col-blue">帮助与反馈</span></p>
+<!--           <p>服务电话：<a href="tel:0533-2869862">0533-2869862</a></p>
+ -->
         </div>
-
+<!--底部van-->
+      <div class="footerbar">
+        <a @click = "getQ"><span><img src="static/images/icon_03.png">常见问题</span></a>
+        <a @click="getfeedback"><span><img src="static/images/icon_01.png">我要反馈</span></a>
+      </div>        
+<!--底部van end-->
       </div>
       <div v-transfer-dom>
       <x-dialog v-model="showDialogStyle" class="szzd-dialog">
@@ -54,6 +62,7 @@
   import {XInput,Group, Cell, Flexbox, FlexboxItem, Scroller,Swiper,SwiperItem, LoadMore, Loading, Confirm, XDialog, TransferDomDirective as TransferDom} from 'vux'
   import { mapGetters } from "vuex";
   import api from '../api/api'
+  let _openidVal = localStorage.getItem('sOpenid')
   export default {
     name: 'index',
     directives: {
@@ -62,6 +71,7 @@
     components: {XInput,Group, Cell, Flexbox, FlexboxItem,Scroller,Swiper,SwiperItem,LoadMore, Loading, Confirm, XDialog},
     data () {
       return {
+        openId: this.$route.query.openid,
         showDialogStyle: false,
         isShowConfirm: false,
         registerFlag: this.$route.query.registerFlag || '0', //0:未登记,1:已登记
@@ -93,7 +103,7 @@
         }
       },
       recieveCard () {
-        api.recieveCard(this.openid).then(res => {
+        api.recieveCard(this.openId).then(res => {
           const data = res.data.attributes || [];
           if(res.data.success) {
             const query = {
@@ -124,19 +134,37 @@
         this.showDialogStyle = false;
       },
       OpenPopupg() {
-        if (this.registerFlag == 3) {  // 如果已经登记过了，就直接刷脸进入基本信息页
-          const query = {
-//            comGuid: this.$route.query.comGuid,
-//            openid: this.$route.query.openid,
-//            registerFlag: this.registerFlag,
-            nativeFlag: this.nativeFlag
+
+        api.userType(this.openid).then((res) => {
+          const data = res.data
+          console.log(data)
+          if(res.data.success){
+
+            if (data.obj.registerFlag == 3) {  // 如果已经登记过了，就直接刷脸进入基本信息页
+              this.idNo = data.obj.idCard
+              const query = {
+    //            comGuid: this.$route.query.comGuid,
+    //            openid: this.$route.query.openid,
+    //            registerFlag: this.registerFlag,
+                nativeFlag: this.nativeFlag
+              }
+    //          this.certFace(this.$route.query.nativeFlag);
+              this.$router.push({path:`/successStep/${this.idNo}`,query});
+              this.showDialogStyle = false;
+            } else {
+              this.showDialogStyle = true;
+            }
+
           }
-//          this.certFace(this.$route.query.nativeFlag);
-          this.$router.push({path:`/successStep/${this.idNo}`,query});
-          this.showDialogStyle = false;
-        } else {
-          this.showDialogStyle = true;
-        }
+        }).catch(() => {
+          this.$store.commit('UPDATE_LOADING', false);
+        })
+
+
+
+
+
+
       },
       certFace (nativeFlag) {
         this.$store.commit('UPDATE_LOADING', true);
@@ -148,16 +176,31 @@
           const data = res.data.jsonRes[0]
           if(res.data.success){
             this.$store.commit('UPDATE_LOADING', false);
-
           }
         }).catch(() => {
           this.$store.commit('UPDATE_LOADING', false);
         })
       },
+      getfeedback () {
+        localStorage.setItem('_back',null);
+        // this.$router.push({path:'/feedback/' + this.openId});
+        // if(_openidVal) {
+        //  this.$router.push({path:'/feedback/' + _openidVal});
+          
+        // }else{
+        location.href = '/cnZhangDian/mobile/qtEntrance?qtType=1';  
+        // //http://192.168.18.250:8080
+        // }          
+      },
+      getQ() {
+         this.$router.push({path:'/help/' + this.openId});
+      }
     },
     mounted () {
       this.setTitle();
       this.setOptionMenu();
+
+      
       //this.getPeopleInfo();
     },
     destroyed () {
@@ -167,6 +210,17 @@
   }
 </script>
 <style>
-.szzd-index-bottom{width:110%;margin-left:-5%;border-radius:50% 50% 0 0;padding:.5rem 0;background:#f1f1f1;}
+.link-jzdqy{display:block;position: absolute;top:0;right:0;width:2.2rem;height:.7rem;color:#fff;font-size:.26rem;top:.2rem;}
+.link-jzdqy img{width:100%;}
+.link-jzdqy i{display: block;width:.3rem;height:.3rem;margin:.07rem .2rem 0;position: absolute;}
+.link-jzdqy span{padding:.03rem 0  0 .6rem;position: absolute;display:block;}
+.szzd-index-bottom{margin-bottom:.8rem;padding:.5rem 0;background:#fff;}
 .col-blue{color:#329af0;}
+.footerbar{
+  width:100%;height:1rem;position: fixed;bottom:0;left:0;background:#f1f1f1;color:#fff;
+}
+.footerbar a{float:left;display:inline-block;width:50%;padding:.2rem 0; height:.6rem; text-align: center;color:#888;}
+.footerbar a span{display: block;border-right:.01rem solid #ccc;line-height: .6rem;}
+.footerbar a:last-child span{border:none;}
+.footerbar a img{display: inline-block;width:.35rem;height:.35rem;margin-right:.1rem;background:#ccc;vertical-align: middle;}
 </style>

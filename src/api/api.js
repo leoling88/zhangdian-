@@ -16,7 +16,9 @@ export default {
   queryNewDictionaryList(nativeFlag) {
     return axios.get(`/mobile/queryNewDictionaryList?typeCode=370303&nativeFlag=1`);
   },
-
+  querySSQPDatas(areaType, areaPid) {
+    return axios.get(`/mobile/area?areaType=${areaType}&areaPid=${areaPid}`);
+  },
   queryForPolice() {
     return axios.get(`/mobile/queryForPolice?flag=1`);
   },
@@ -601,8 +603,82 @@ export default {
         roadlevel: params.roadlevel || 0,
       }
     });
-  }
+  },
+  /*
+   *居住证登记用户反馈
+   **/
+  feedbackSubmit (params) {
+    return axios.post('/mobile/feedBack',qs.stringify({
+      title: params.title,
+      defaultOpinion: params.defaultOpinion,
+      personalOpinion: params.personalOpinion,
+      openId: params.openId
+    }),
+      {headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    });
+  },
+  /*
+   *居住证登记用户反馈上传图片
+   **/
 
+  setUpPic(params) {
+    return axios.post('/mobile/uploadFbPic',qs.stringify({
+      openId:params.openId,
+      file:params.file,
 
+    }),
+      {headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    })
+  },
+
+  /*
+   *居住证登记用户反馈删除图片
+   **/
+ delUpPic(fid) {
+    return axios.post(`/mobile/delPic?fId=${fid}`);
+  },
+
+  /*
+  * 住证登记用户个人反馈历史
+   */
+  requireMyQ(params) {
+    return axios.post('/mobile/feedBackList',qs.stringify({
+      page:params.page,
+      size:params.size,
+      openId:params.openId,
+    })
+    )
+  },
+  /*
+  * 住证登记用户个人反馈问题详情
+   */
+  myQArticle(comGUID) {
+    return axios.post(`/mobile/feedBackdetail?comGUID=${comGUID}`);
+
+  },
+
+  /*
+  * 住证登记常见问题
+   */
+  requireQ(params) {
+    return axios.post('/mobile/helplist',qs.stringify({
+      page:params.page,
+      size:params.size,
+    })
+    )
+  },
+  /*
+  * 住证登记用户热门问题详情
+   */
+  hotArticle(comGUID) {
+    return axios.post(`/mobile/helpdetail?comGUID=${comGUID}`);
+  },
+
+  /*
+  * 判断用户登记状态 
+   */
+  userType(openId) {
+    return axios.post(`/mobile/registerFlag?openId=${openId}`);
+  },
 
 }

@@ -28,8 +28,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {// 配置请求代理
       '/cnZhangDian':{
-        // target: 'http://lst.createt.cn:3389',
-        target: 'http://192.168.18.81:8080',
+        target: 'http://lst.createt.cn:8080',
+        // target: 'http://192.168.18.250:8080',
         changeOrigin:true,
         pathRewrith:{
           '^/cnZhangDian': '/cnZhangDian'

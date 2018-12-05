@@ -12,7 +12,7 @@
           <cell title="手机号" :value="formData.phoneNo" value-align="left"></cell>
           <cell title="身份证" :value="formData.idNo" value-align="left"></cell>
           <cell title="登记日期" :value="formData.checktime" value-align="left"></cell>
-          <cell class="livePlace" title="现居住地" :value="formData.townAddress + formData.roomNumberName + formData.doorNumberName" value-align="left"></cell>
+          <cell class="livePlace" title="现居住地" :value="formData.wholeName" value-align="left"></cell>
         </group>
       </div>
 
@@ -48,7 +48,8 @@
           checktime: '',// 预约时间
           roomNumberName: '',
           doorNumberName: '',
-          townAddress:''
+          townAddress:'',
+          wholeName:''    //完整地址
         },
         streetTownName: '', // 预约街道
         value1: '街道代码', //
@@ -155,7 +156,8 @@
             this.formData.comeDate = data.comeDate ? data.comeDate : '';
             this.formData.comeReason = data.comeReason ? data.comeReason : '';
             this.formData.idNo = this.starRoomNumberName(this.formData.idNo);
-            this.formData.townAddress = value2name([JSON.parse(data.address)[0]], this.addressList);//镇办--replace去除字符串中的空格
+            this.formData.wholeName = data.wholeName
+            // this.formData.townAddress = value2name([JSON.parse(data.address)[0]], this.addressList);//镇办--replace去除字符串中的空格
           }
         }).catch(() => {
           this.$store.commit('UPDATE_LOADING', false);

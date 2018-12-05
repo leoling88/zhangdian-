@@ -38,6 +38,17 @@ export default new Router({
         showBottom: false
       }
     },
+      //step2
+    {
+      path: '/step2_bac/:idNo',
+      component: function (resolve) {
+        require(['../components/registration/step2_bac.vue'], resolve);
+      },
+      meta: {
+        title: '数字广东',
+        showBottom: false
+      }
+    },
     //step3
     {
       path: '/step3/:idNo',
@@ -138,7 +149,7 @@ export default new Router({
       },
       meta: {
         title: '意见反馈',
-        showBottom: true
+        showBottom: false
       }
     },
     //我的反馈
@@ -149,7 +160,7 @@ export default new Router({
       },
       meta: {
         title: '我的反馈',
-        showBottom: true
+        showBottom: false
       }
     },
     //反馈与帮助
@@ -165,7 +176,7 @@ export default new Router({
     },
     //问题解答
     {
-      path: '/article/:openid/:comGUID',
+      path: '/article/:comGUID',
       component: function (resolve) {
         require(['../components/help/article.vue'], resolve);
       },
@@ -176,13 +187,13 @@ export default new Router({
     },
     //我的问题解答
     {
-      path: '/article2/:openid/:comGUID',
+      path: '/article2/:comGUID',
       component: function (resolve) {
         require(['../components/help/article2.vue'], resolve);
       },
       meta: {
         title: '帮助与反馈',
-        showBottom: true
+        showBottom: false
       }
     },  
     //处理成功页面
@@ -193,8 +204,20 @@ export default new Router({
       },
       meta: {
         title: '提交结果',
-        showBottom: true
+        showBottom: false
       }
     }, 
+    //处理成功页面
+    {
+      path: '/regulations1',
+      component: function (resolve) {
+        require(['../components/help/regulations1.vue'], resolve);
+      },
+      meta: {
+        title: '居住证权益',
+        showBottom: false
+      }
+    },
+
   ]
 });

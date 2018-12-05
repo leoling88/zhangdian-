@@ -5,10 +5,11 @@ import App from './App';
 import router from './router';
 import store from './store/store';
 import { ConfirmPlugin } from 'vux';
+
 Vue.use(ConfirmPlugin)
 import FastClick from 'fastclick';
 FastClick.attach(document.body)
-
+import lrz from 'lrz' 
 import utils from './scripts/utils/utils'; //配置基础工具类
 Vue.use(utils);
 
